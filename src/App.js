@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Pagination from './pagination';
 import Search from './search';
+import Createissue from './createissue';
 import IssueCard from './issuecard';
 import { logo } from './logo.svg';
 import './App.css';
@@ -32,7 +33,7 @@ class githubIssue extends Component {
                     <h1 className="text-uppercase">Github issue page</h1>
                     <div className="row">
                         <div className="col-6">
-                            {/* {your create issue here} */}
+                            <Createissue />
                             </div>                        
                         <div className="col-12">
                             {/* {your search field here} */}
