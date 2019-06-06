@@ -1,12 +1,7 @@
 # CoderSchool FTW - *Github Issue Page*
 
-Created with :blue_heart: by: 6 Idiots
-* <a href="https://github.com/Nguyephi">Philip</a>
-* <a href="https://github.com/daivnguyen1991">Dai</a>
-* <a href="https://github.com/BoomBoomRay">Ray</a>
-* <a href="https://github.com/huynhtehoa">Hoa</a>
-* <a href="https://github.com/SteelHeart112">Harold</a>
-* <a href="">Anh</a>
+Created with :blue_heart: by **6 Idiots**
+<a href="https://github.com/Nguyephi">Philip</a>, <a href="https://github.com/daivnguyen1991">Dai</a>, <a href="https://github.com/BoomBoomRay">Ray</a>, <a href="https://github.com/huynhtehoa">Hoa</a>, <a href="https://github.com/SteelHeart112">Harold</a>, <a href="https://github.com/albertanguyen">Anh</a>
 
 ## Description
 

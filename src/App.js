@@ -49,7 +49,6 @@ class githubIssue extends Component {
         return (
             <div className="App">
                 <RenderNavbar />
-                {/* <Search /> */}
                 <div className="App-header container">
                     <h1 className="text-uppercase">Github issue page</h1>
                     <Search
@@ -61,7 +60,6 @@ class githubIssue extends Component {
                     <div className="row">
                         <div className="col-6">
                             <Createissue />
-                            {/* {your create issue here} */}
                         </div>
                         <div className="col-12">
                             {/* {your search field here} */}
