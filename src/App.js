@@ -49,15 +49,13 @@ class githubIssue extends Component {
             <div className="App">
                 {/* <Search /> */}
                 <div className="App-header container">
-
+                    <h1 className="text-uppercase">Github issue page</h1>
                 <Search 
                 handleClick={this.handleClick}
                   searchRepoInput={(e) => this.searchRepoInput(e)}
                   searchUserNameInput={(e) => this.searchUserNameInput(e)}
                   searchUserName={this.state.searchUserName} 
                   searchRepoName={this.state.searchRepoName}/>
-                    <img className="App-logo" src={ logo } alt="logo" />
-                    <h1 className="text-uppercase">Github issue page</h1>
                     <div className="row">
                         <div className="col-6">
                             <Createissue />
