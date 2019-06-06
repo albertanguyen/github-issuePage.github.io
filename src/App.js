@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Pagination from './pagination';
 import Search from './search';
@@ -12,8 +11,9 @@ class githubIssue extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            search: '',
-            issue: [],
+            repoName: '',
+            userName: '',
+            issueList: [],
             isloaded: false,
             allIssues: []
         }
@@ -26,15 +26,25 @@ class githubIssue extends Component {
     render() {
         return (
             <div className="App">
-                <div className="App-header">
+                {/* {navbar here} */}
+                <div className="App-header container">
                     <img className="App-logo" src={ logo } alt="logo" />
                     <h1 className="text-uppercase">Github issue page</h1>
+                    <div className="row">
+                        <div className="col-6">
+                            {/* {your create issue here} */}
+                            </div>                        
+                        <div className="col-12">
+                            {/* {your search field here} */}
+                        </div>
+                    </div>
                 </div>
                 <div className="App-body container">
                     <div className="row d-flex justify-content-center">
+                    {/* {your cards here} */}
                     </div>
                 </div>
-                <div className="App-footer" onClick={() => this.getmovies()}>
+                <div className="App-footer">
                 </div>
             </div>
             )
