@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button ,
+Navbar,
+Form,
+Nav,
+FormControl,
+}
+from 'react-bootstrap';
 import './search.css';
 
 
-class Search extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            isloaded: false
-        }
-    }
-
-    // componentDidmount() {
-
-    // }
-
-    render() {
+const Search = (props) => {
         return (
-            <p>search page</p>            
+        <Navbar bg="dark" variant="dark">
+            <Nav className="mr-auto">
+            </Nav>
+            <Form inline>
+                <FormControl onChange={(e) => props.searchInput(e)} value={props.searchRepoName} type="text" placeholder="Search Repository..." className="mr-sm-2" />
+                <Button onClick={() => props.handleClick()} variant="outline-info">Search</Button>
+            </Form>
+        </Navbar>
         )
     }
 
-}
+
 
 export default Search;
