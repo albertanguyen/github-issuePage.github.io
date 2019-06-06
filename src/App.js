@@ -4,7 +4,6 @@ import Pagination from './pagination';
 import Search from './search';
 import Createissue from './createissue';
 import IssueCard from './issuecard';
-import { logo } from './logo.svg';
 import './App.css';
 
 
