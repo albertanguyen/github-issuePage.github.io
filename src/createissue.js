@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { 
+import {
     Button,
     Navbar,
     Form,
     FormControl,
     Nav,
-    Modal } from 'react-bootstrap';
+    Modal
+} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './createissue.css';
 
+
+
+// color theme 282c34, 17a2b8, 1aa2b8
 
 
 class MyVerticallyCenteredModal extends React.Component {
@@ -21,28 +25,32 @@ class MyVerticallyCenteredModal extends React.Component {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Modal heading
-          </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Navbar bg="dark" variant="dark">
+                <Modal.Header style={{ backgroundColor: "#282c34" }} closeButton>
+                    <Navbar variant="dark">
                         <Nav className="mr-auto">
                         </Nav>
                         <Form inline>
                             <FormControl type="text" placeholder="Issue subject" className="mr-sm-2" />
                         </Form>
                     </Navbar>
-                    <h4><input type="text"/></h4>
-                    <p>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                        ac consectetur ac, vestibulum at eros.
-          </p>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Describe your issue below</Form.Label>
+                        <Form.Control as="textarea" rows="10" />
+                    </Form.Group>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={this.props.onHide}>Close</Button>
+                <Modal.Footer style={{ backgroundColor: "#282c34" }}>
+                    <Navbar variant="dark">
+                        <Button
+                            className="mr-auto"
+                            onClick={this.props.onHide}
+                            variant="outline-info"
+                        >
+                            Submit issue
+                            </Button>
+                    </Navbar>
+
                 </Modal.Footer>
             </Modal>
         );
@@ -61,11 +69,11 @@ class Createissue extends Component {
         let modalClose = () => this.setState({ modalShow: false });
 
         return (
-            <Navbar expand="lg" bg="dark" variant="dark">
+            <Navbar expand="lg" variant="dark">
                 <div className="d-flex">
                     <Button className="issue-btn"
                         variant="outline-info"
-                        style={{ width: '150px' }}
+                        style={{ width: '150px', fontSize: "0.7em" }}
                         onClick={() => this.setState({ modalShow: true })}
                     >Create issue</Button>
                     <img className="App-logo" src={'img/logo.svg'} alt="logo" />
@@ -78,9 +86,6 @@ class Createissue extends Component {
         );
     }
 }
-
-
-
 
 
 
