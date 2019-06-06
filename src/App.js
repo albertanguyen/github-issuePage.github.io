@@ -22,22 +22,27 @@ class githubIssue extends Component {
     // componentDidmount() {
 
     // }
-
+    searchInput = (e) => {
+        this.setState({search: e.target.value})
+    }
+    
     render() {
         return (
             <div className="App">
+                <Search />
                 <div className="App-header">
-                    <img className="App-logo" src={ logo } alt="logo" />
+                    <Search />
+                    <img className="App-logo" src={logo} alt="logo" />
                     <h1 className="text-uppercase">Github issue page</h1>
                 </div>
                 <div className="App-body container">
                     <div className="row d-flex justify-content-center">
                     </div>
                 </div>
-                <div className="App-footer" onClick={() => this.getmovies()}>
+                <div className="App-footer">
                 </div>
             </div>
-            )
+        )
     }
 
 }
