@@ -8,24 +8,20 @@ FormControl,
 from 'react-bootstrap';
 import './search.css';
 
-const handleChange = () => {
-    
-}
-const handleClick = () => {
-}
-function Search () {
 
+const Search = (props) => {
         return (
         <Navbar bg="dark" variant="dark">
             <Nav className="mr-auto">
             </Nav>
             <Form inline>
-                <FormControl onChange={this.props.search} type="text" placeholder="Search" className="mr-sm-2" />
-                <Button onClick={handleClick} variant="outline-info">Search</Button>
+                <FormControl onChange={(e) => props.searchInput(e)} value={props.searchRepoName} type="text" placeholder="Search Repository..." className="mr-sm-2" />
+                <Button onClick={() => props.handleClick()} variant="outline-info">Search</Button>
             </Form>
         </Navbar>
         )
     }
+
 
 
 export default Search;

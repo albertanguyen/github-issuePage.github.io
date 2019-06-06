@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Pagination from './pagination';
 import Search from './search';
@@ -12,8 +11,9 @@ class githubIssue extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            search: '',
-            issue: [],
+            searchRepoName: '',
+            userName: '',
+            issueList: [],
             isloaded: false,
             allIssues: []
         }
@@ -23,20 +23,44 @@ class githubIssue extends Component {
 
     // }
     searchInput = (e) => {
-        this.setState({search: e.target.value})
+        this.setState({searchRepoName: e.target.value},console.log(this.state.searchRepoName)
+        )
     }
-    
+
+    handleClick = async () => {
+        const { searchRepoName } = this.state
+        const response = await fetch(`http://api.github.com/repos/facebook/${searchRepoName}/issues`)
+        const jsonData = await response.json()
+        console.log('Json', jsonData)
+        this.setState({
+        searchRepoName : ""
+        })
+
+      }
     render() {
         return (
             <div className="App">
-                <Search />
-                <div className="App-header">
-                    <Search />
-                    <img className="App-logo" src={logo} alt="logo" />
+                {/* <Search /> */}
+                <div className="App-header container">
+
+                <Search 
+                handleClick={this.handleClick}
+                  searchInput={(e) => this.searchInput(e)} 
+                  searchRepoName={this.state.searchRepoName}/>
+                    <img className="App-logo" src={ logo } alt="logo" />
                     <h1 className="text-uppercase">Github issue page</h1>
+                    <div className="row">
+                        <div className="col-6">
+                            {/* {your create issue here} */}
+                            </div>                        
+                        <div className="col-12">
+                            {/* {your search field here} */}
+                        </div>
+                    </div>
                 </div>
                 <div className="App-body container">
                     <div className="row d-flex justify-content-center">
+                    {/* {your cards here} */}
                     </div>
                 </div>
                 <div className="App-footer">
