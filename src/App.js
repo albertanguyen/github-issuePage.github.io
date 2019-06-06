@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Card } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Pagination from './pagination';
+import Search from './search';
+import IssueCard from './issuecard';
+import { logo } from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class githubIssue extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            search: '',
+            issue: [],
+            isloaded: false,
+            allIssues: []
+        }
+    }
+
+    // componentDidmount() {
+
+    // }
+
+    render() {
+        return (
+            <div className="App">
+                <div className="App-header">
+                    <img className="App-logo" src={ logo } alt="logo" />
+                    <h1 className="text-uppercase">Github issue page</h1>
+                </div>
+                <div className="App-body container">
+                    <div className="row d-flex justify-content-center">
+                    </div>
+                </div>
+                <div className="App-footer" onClick={() => this.getmovies()}>
+                </div>
+            </div>
+            )
+    }
+
 }
 
-export default App;
+export default githubIssue;
