@@ -40,6 +40,7 @@ class githubIssue extends Component {
         if (jsonData.message === "Not Found" || null) {
             response = await fetch(`https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}`)
             jsonData = await response.json()
+        return alert("Repository does not exist")
             console.log("Json data 2", jsonData)
         }
         this.setState({
