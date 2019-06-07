@@ -78,6 +78,27 @@ class githubIssue extends Component {
         )
     }
 
+  render() {
+    return (
+      <div className="App">
+        {/* {navbar here} */}
+        <div className="App-header container">
+          <img className="App-logo" src={logo} alt="logo" />
+          <h1 className="text-uppercase">Github issue page</h1>
+          <div className="row">
+            <div className="col-6">{/* {your create issue here} */}</div>
+            <div className="col-12">{/* {your search field here} */}</div>
+          </div>
+        </div>
+        <div className="App-body container">
+          <div className="row d-flex justify-content-center">
+            <IssueCard />
+          </div>
+        </div>
+        <div className="App-footer" />
+      </div>
+    );
+  }
 }
 
 export default githubIssue;

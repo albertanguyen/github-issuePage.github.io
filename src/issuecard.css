@@ -1,3 +1,18 @@
 .issuecard {
-    
+}
+.card-img-top {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+div.markdown img {
+  border: 2px solid #17a2b8;
+  max-width: 90%;
+}
+.avataimg {
+  border: 1px solid #17a2b8;
+}
+
+.badge-pill {
+  border-radius: none !important;
 }
