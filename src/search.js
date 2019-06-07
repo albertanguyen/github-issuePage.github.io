@@ -15,7 +15,8 @@ const Search = (props) => {
             <Nav className="mr-auto">
             </Nav>
             <Form inline>
-                <FormControl onChange={(e) => props.searchInput(e)} value={props.searchRepoName} type="text" placeholder="Search Repository..." className="mr-sm-2" />
+                <FormControl onChange={(e) => props.searchUserNameInput(e)} value={props.searchUserName} type="text" placeholder="Search Username..." className="mr-sm-2" />
+                <FormControl onChange={(e) => props.searchRepoInput(e)} value={props.searchRepoName} type="text" placeholder="Search Repository..." className="mr-sm-2" />
                 <Button onClick={() => props.handleClick()} variant="outline-info">Search</Button>
             </Form>
         </Navbar>
