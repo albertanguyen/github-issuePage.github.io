@@ -35,24 +35,27 @@ class githubIssue extends Component {
       `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues`
     );
     let jsonData = await response.json();
-    console.log("Json Data 1", jsonData);
+
+    if (jsonData.message !== "Not Found") {
+      this.setState({
+        issueList: jsonData,
+        searchRepoName: "",
+        searchUserName: ""
+      });
+    }
+
     if (jsonData.message === "Not Found") {
       response = await fetch(
         `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}`
       );
       jsonData = await response.json();
-      console.log("Json data 2", jsonData.total_count);
-
-      // } else if (jsonData.message === "Not found") {
-
-      //     console.log("json data 3", jsonData)
-      //     alert('Repository does not exist')
+      this.setState({
+        issueList: jsonData.items,
+        searchRepoName: "",
+        searchUserName: ""
+      });
+      console.log("check check check", this.state.issueList);
     }
-    this.setState({
-      issueList: jsonData,
-      searchRepoName: "",
-      searchUserName: ""
-    });
   };
 
   render() {
@@ -77,7 +80,6 @@ class githubIssue extends Component {
         </div>
         <div className="App-body container">
           <div className="row d-flex justify-content-center">
-            {/* {isSearched && <IssueCard issue={this.state.issueList} />} */}
             <IssueCard issue={this.state.issueList} />
           </div>
         </div>
