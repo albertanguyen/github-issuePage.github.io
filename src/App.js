@@ -34,21 +34,26 @@ class githubIssue extends Component {
 
     handleClick = async () => {
         const { searchRepoName, searchUserName } = this.state
+       
         let response = await fetch(`http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues`)
         let jsonData = await response.json()
         console.log("Json Data 1", jsonData)
-        if (jsonData.message === "Not Found" || null) {
+        if (jsonData.message === "Not Found") {
             response = await fetch(`https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}`)
             jsonData = await response.json()
-        return alert("Repository does not exist")
-            console.log("Json data 2", jsonData)
+            console.log("Json data 2", jsonData.total_count)
+            
+        // } else if (jsonData.message === "Not found") {
+
+        //     console.log("json data 3", jsonData)
+        //     alert('Repository does not exist')
         }
         this.setState({
             searchRepoName: "",
             searchUserName: "",
 
         })
-
+    
     }
     render() {
         return (
