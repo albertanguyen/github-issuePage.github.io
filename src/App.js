@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Pagination from "./pagination";
+import RenderPagination from "./pagination";
 import Search from "./search";
 import Createissue from "./createissue";
 import IssueCard from "./issuecard";
@@ -16,7 +16,8 @@ class githubIssue extends Component {
       searchUserName: "",
       issueList: [],
       isloaded: false,
-      allIssues: []
+      currentPage: 1,
+      lastPage: 1,
     };
   }
 
@@ -29,11 +30,72 @@ class githubIssue extends Component {
   };
 
   handleClick = async () => {
-    const { searchRepoName, searchUserName } = this.state;
+    const { searchRepoName, searchUserName, currentPage } = this.state;
+
+    let rawString1;
 
     let response = await fetch(
-      `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues`
+      `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues?page=${currentPage}`
     );
+
+    let jsonData = await response.json();
+
+    if (jsonData.message !== "Not Found") {
+
+      rawString1 = response.headers.get("link")
+
+      if (rawString1 === null) {
+        this.setState({
+          lastPage: 1,
+          searchRepoName: "",
+          searchUserName: ""
+        })
+      }
+      let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
+      let rawString3 = rawString2.replace('>; rel="last"', "")
+      let rawString4 = rawString3.replace('page=', "")
+
+      this.setState({
+        issueList: jsonData,
+        lastPage: parseInt(rawString4),
+      });
+    }
+
+    if (jsonData.message === "Not Found") {
+      response = await fetch(
+        `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}?page=${currentPage}`
+      );
+      jsonData = await response.json();
+
+      rawString1 = response.headers.get("link")
+
+      if (rawString1 === null) {
+        this.setState({
+          lastPage: 1,
+          searchRepoName: "",
+          searchUserName: ""
+        })
+      }
+      let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
+      let rawString3 = rawString2.replace('>; rel="last"', "")
+      let rawString4 = rawString3.replace('page=', "")
+
+      this.setState({
+        issueList: jsonData.items,
+        lastPage: parseInt(rawString4),
+        searchRepoName: "",
+        searchUserName: ""
+      });
+    }
+  };
+
+  handleClickForPagination = async () => {
+    const { searchRepoName, searchUserName, currentPage } = this.state;
+
+    let response = await fetch(
+      `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues?page=${currentPage}`
+    );
+
     let jsonData = await response.json();
 
     if (jsonData.message !== "Not Found") {
@@ -46,7 +108,7 @@ class githubIssue extends Component {
 
     if (jsonData.message === "Not Found") {
       response = await fetch(
-        `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}`
+        `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}?page=${currentPage}`
       );
       jsonData = await response.json();
       this.setState({
@@ -54,8 +116,14 @@ class githubIssue extends Component {
         searchRepoName: "",
         searchUserName: ""
       });
-      console.log("check check check", this.state.issueList);
     }
+  }
+
+  handlePageChange = (page, e) => {
+    this.handleClickForPagination()
+    this.setState({
+      currentPage: page,
+    });
   };
 
   render() {
@@ -81,6 +149,12 @@ class githubIssue extends Component {
         <div className="App-body container">
           <div className="row d-flex justify-content-center">
             <IssueCard issue={this.state.issueList} />
+            <RenderPagination
+              currentPage={this.state.currentPage}
+              issue={this.props.issueList}
+              lastPage={this.state.lastPage}
+              onPageChange={(page) => this.handlePageChange(page)}
+            />
           </div>
         </div>
         <div className="App-footer">
