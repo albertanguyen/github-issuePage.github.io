@@ -78,7 +78,7 @@ class githubIssue extends Component {
                 </div>
                 <div className="App-body container">
                     <div className="row d-flex justify-content-center">
-                        {/* {your cards here} */}
+                      <IssueCard />
                     </div>
                 </div>
                 <div className="App-footer">
@@ -87,7 +87,6 @@ class githubIssue extends Component {
             </div>
         )
     }
-
 }
 
 export default githubIssue;
