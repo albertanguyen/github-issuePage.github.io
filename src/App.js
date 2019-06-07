@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Pagination from './pagination';
 import Search from './search';
+import Createissue from './createissue';
 import IssueCard from './issuecard';
-import { logo } from './logo.svg';
+import RenderNavbar from './navbar';
+import RenderFooter from './footer';
 import './App.css';
 
 
@@ -20,12 +22,12 @@ class githubIssue extends Component {
     }
 
     searchRepoInput = (e) => {
-        this.setState({searchRepoName: e.target.value}
+        this.setState({ searchRepoName: e.target.value }
         )
     }
 
     searchUserNameInput = (e) => {
-        this.setState({searchUserName: e.target.value}
+        this.setState({ searchUserName: e.target.value }
         )
     }
 
@@ -38,29 +40,27 @@ class githubIssue extends Component {
             jsonData = await response.json()
         }
         this.setState({
-        searchRepoName : "",
-        searchUserName: ""
+            searchRepoName: "",
+            searchUserName: ""
         })
 
-      }
+    }
     render() {
         return (
             <div className="App">
-                {/* <Search /> */}
+                <RenderNavbar />
                 <div className="App-header container">
-
-                <Search 
-                handleClick={this.handleClick}
-                  searchRepoInput={(e) => this.searchRepoInput(e)}
-                  searchUserNameInput={(e) => this.searchUserNameInput(e)}
-                  searchUserName={this.state.searchUserName} 
-                  searchRepoName={this.state.searchRepoName}/>
-                    <img className="App-logo" src={ logo } alt="logo" />
                     <h1 className="text-uppercase">Github issue page</h1>
+                    <Search
+                        handleClick={this.handleClick}
+                        searchRepoInput={(e) => this.searchRepoInput(e)}
+                        searchUserNameInput={(e) => this.searchUserNameInput(e)}
+                        searchUserName={this.state.searchUserName}
+                        searchRepoName={this.state.searchRepoName} />
                     <div className="row">
                         <div className="col-6">
-                            {/* {your create issue here} */}
-                            </div>                        
+                            <Createissue />
+                        </div>
                         <div className="col-12">
                             {/* {your search field here} */}
                         </div>
@@ -68,10 +68,11 @@ class githubIssue extends Component {
                 </div>
                 <div className="App-body container">
                     <div className="row d-flex justify-content-center">
-                    {/* {your cards here} */}
+                        {/* {your cards here} */}
                     </div>
                 </div>
                 <div className="App-footer">
+                    <RenderFooter />
                 </div>
             </div>
         )

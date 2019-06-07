@@ -1,0 +1,15 @@
+@media screen and (min-width: 992px) {
+  .dropdown-menu.show {
+    left: auto !important;
+    right: 0 !important;
+  }
+}
+
+.dropdown-menu.show {
+    left: 50%;
+    right: auto;
+  }
+
+.dropdown-toggle::after {
+  display: none;
+}
