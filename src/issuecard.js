@@ -25,7 +25,6 @@ class IssueCard extends Component {
   }
 
   renderCard() {
-    console.log("issue", this.props.issue);
     return this.props.issue.map(
       ({ number, title, body, user, labels, state, created_at }) => {
         return (

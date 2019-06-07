@@ -30,12 +30,12 @@ class githubIssue extends Component {
   };
 
   handleClick = async () => {
-    const { searchRepoName, searchUserName, currentPage } = this.state;
+    const { searchRepoName, searchUserName } = this.state;
 
     let rawString1;
 
     let response = await fetch(
-      `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues?page=${currentPage}`
+      `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues?page=1`
     );
 
     let jsonData = await response.json();
@@ -63,7 +63,7 @@ class githubIssue extends Component {
 
     if (jsonData.message === "Not Found") {
       response = await fetch(
-        `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}?page=${currentPage}`
+        `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}?page=1`
       );
       jsonData = await response.json();
 
