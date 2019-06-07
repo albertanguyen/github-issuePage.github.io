@@ -4,28 +4,8 @@ import { Container, Card, Badge, Accordion, Button } from "react-bootstrap";
 import moment from "moment";
 import MDReactComponent from "markdown-react-js";
 import "./issuecard.css";
-import { wrap } from "module";
-import { RSA_NO_PADDING } from "constants";
 
 class IssueCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isloaded: false,
-      issue: []
-    };
-  }
-
-  async getData() {
-    const data = await fetch(
-      "https://api.github.com/repos/facebook/react/issues"
-    );
-    const myData = await data.json();
-    console.log("data", myData);
-    this.setState({ issue: myData });
-    console.log("check my datat in console", this.state.issue);
-  }
-
   renderbadges(labels) {
     return labels.map(({ color, name }) => {
       return (
@@ -45,7 +25,7 @@ class IssueCard extends Component {
   }
 
   renderCard() {
-    return this.state.issue.map(
+    return this.props.issue.map(
       ({ number, title, body, user, labels, state, created_at }) => {
         console.log("check body", body);
         return (
@@ -102,10 +82,6 @@ class IssueCard extends Component {
         );
       }
     );
-  }
-
-  componentDidMount() {
-    this.getData();
   }
 
   render() {
