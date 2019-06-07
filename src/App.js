@@ -22,7 +22,7 @@ class githubIssue extends Component {
     }
 
     searchRepoInput = (e) => {
-        this.setState({ searchRepoName: e.target.value }
+        this.setState({ searchRepoName: e.target.value,}
         )
     }
 
@@ -30,18 +30,22 @@ class githubIssue extends Component {
         this.setState({ searchUserName: e.target.value }
         )
     }
+  
 
     handleClick = async () => {
         const { searchRepoName, searchUserName } = this.state
         let response = await fetch(`http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues`)
         let jsonData = await response.json()
+        console.log("Json Data 1", jsonData)
         if (jsonData.message === "Not Found" || null) {
             response = await fetch(`https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}`)
             jsonData = await response.json()
+            console.log("Json data 2", jsonData)
         }
         this.setState({
             searchRepoName: "",
-            searchUserName: ""
+            searchUserName: "",
+
         })
 
     }
