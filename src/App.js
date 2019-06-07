@@ -20,46 +20,41 @@ class githubIssue extends Component {
     };
   }
 
-    searchRepoInput = (e) => {
-        this.setState({ searchRepoName: e.target.value,}
-        )
-    }
+  searchRepoInput = e => {
+    this.setState({ searchRepoName: e.target.value });
+  };
 
-    searchUserNameInput = (e) => {
-        this.setState({ searchUserName: e.target.value }
-        )
-    }
-  
+  searchUserNameInput = e => {
+    this.setState({ searchUserName: e.target.value });
+  };
 
-    handleClick = async () => {
-        const { searchRepoName, searchUserName } = this.state
-       
-        let response = await fetch(`http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues`)
-        let jsonData = await response.json()
-        console.log("Json Data 1", jsonData)
-        if (jsonData.message === "Not Found") {
-            response = await fetch(`https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}`)
-            jsonData = await response.json()
-            console.log("Json data 2", jsonData.total_count)
-            
-        // } else if (jsonData.message === "Not found") {
+  handleClick = async () => {
+    const { searchRepoName, searchUserName } = this.state;
 
-        //     console.log("json data 3", jsonData)
-        //     alert('Repository does not exist')
-        }
-        this.setState({
-            searchRepoName: "",
-            searchUserName: "",
+    let response = await fetch(
+      `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues`
+    );
+    let jsonData = await response.json();
+    console.log("Json Data 1", jsonData);
+    if (jsonData.message === "Not Found") {
+      response = await fetch(
+        `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}`
+      );
+      jsonData = await response.json();
+      console.log("Json data 2", jsonData.total_count);
 
-        })
-    
+      // } else if (jsonData.message === "Not found") {
+
+      //     console.log("json data 3", jsonData)
+      //     alert('Repository does not exist')
     }
     this.setState({
+      issueList: jsonData,
       searchRepoName: "",
-      searchUserName: "",
-      issuesList: jsonData
+      searchUserName: ""
     });
   };
+
   render() {
     return (
       <div className="App">
@@ -82,6 +77,7 @@ class githubIssue extends Component {
         </div>
         <div className="App-body container">
           <div className="row d-flex justify-content-center">
+            {/* {isSearched && <IssueCard issue={this.state.issueList} />} */}
             <IssueCard issue={this.state.issueList} />
           </div>
         </div>

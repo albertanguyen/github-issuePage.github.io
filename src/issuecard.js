@@ -27,7 +27,7 @@ class IssueCard extends Component {
   renderCard() {
     return this.props.issue.map(
       ({ number, title, body, user, labels, state, created_at }) => {
-        console.log("check body", body);
+        console.log("check body", this.props.issue);
         return (
           <Accordion>
             <Card style={{ width: "100%" }}>
@@ -85,7 +85,7 @@ class IssueCard extends Component {
   }
 
   render() {
-    return <Container>{this.renderCard()}</Container>;
+    return <Container>{this.renderCard(this.props.issue)}</Container>;
   }
 }
 
