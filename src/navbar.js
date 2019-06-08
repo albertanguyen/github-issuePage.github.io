@@ -1,19 +1,21 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './navbar.css'
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Spinner } from 'react-bootstrap';
 
 function RenderNavbar() {
     return (
         <Navbar collapseOnSelect expand="lg" fixed="top" bg="light">
             <Navbar.Brand href="#">
-                <img
-                    alt="logo"
-                    src="https://image.flaticon.com/icons/svg/25/25231.svg"
-                    width="35"
-                    height="35"
-                    className="d-inline-block align-top"
-                />
+                <Spinner animation="grow" role="status" variant="light">
+                    <img
+                        alt="logo"
+                        src="https://library.kissclipart.com/20181116/tq/kissclipart-github-octocat-clipart-github-inc-d75c5e491a5ca190.jpg"
+                        width="35"
+                        height="35"
+                        className="d-inline-block align-top"
+                    />
+                </Spinner>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav" style={{ textAlign: "center" }}>

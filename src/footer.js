@@ -19,7 +19,7 @@ function RenderFooter() {
                     </div>
                     <div className="col d-none d-lg-block">
                         <img
-                            src="https://image.flaticon.com/icons/svg/25/25231.svg"
+                            src="https://library.kissclipart.com/20181116/tq/kissclipart-github-octocat-clipart-github-inc-d75c5e491a5ca190.jpg"
                             width="35px"
                             height="35px"
                         />
