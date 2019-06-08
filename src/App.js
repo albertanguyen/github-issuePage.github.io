@@ -17,7 +17,7 @@ class githubIssue extends Component {
       searchRepoName: "",
       searchUserName: "",
       issueList: [],
-      isloaded: false,
+      isSearch: false,
       currentPage: 1,
       lastPage: 1,
     };
@@ -54,6 +54,7 @@ class githubIssue extends Component {
         this.setState({
           lastPage: 1,
           currentPage: 1,
+          isSearch: true
         })
       }
       let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
@@ -64,6 +65,7 @@ class githubIssue extends Component {
         issueList: jsonData,
         lastPage: parseInt(rawString4),
         currentPage: 1,
+        isSearch: true
       });
     }
 
@@ -79,6 +81,7 @@ class githubIssue extends Component {
         this.setState({
           lastPage: 1,
           currentPage: 1,
+          isSearch: true
         })
       }
       let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
@@ -89,6 +92,7 @@ class githubIssue extends Component {
         issueList: jsonData.items,
         lastPage: parseInt(rawString4),
         currentPage: 1,
+        isSearch: true
       });
     }
   };
