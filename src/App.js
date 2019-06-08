@@ -30,12 +30,12 @@ class githubIssue extends Component {
   };
 
   handleClick = async () => {
-    const { searchRepoName, searchUserName } = this.state;
+    const { searchRepoName, searchUserName, currentPage } = this.state;
 
     let rawString1;
 
     let response = await fetch(
-      `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues?page=1`
+      `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues?page=${currentPage}`
     );
 
     let jsonData = await response.json();
@@ -47,8 +47,7 @@ class githubIssue extends Component {
       if (rawString1 === null) {
         this.setState({
           lastPage: 1,
-          searchRepoName: "",
-          searchUserName: ""
+          currentPage: 1,
         })
       }
       let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
@@ -58,12 +57,13 @@ class githubIssue extends Component {
       this.setState({
         issueList: jsonData,
         lastPage: parseInt(rawString4),
+        currentPage: 1,
       });
     }
 
     if (jsonData.message === "Not Found") {
       response = await fetch(
-        `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}?page=1`
+        `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}?page=${currentPage}`
       );
       jsonData = await response.json();
 
@@ -72,8 +72,7 @@ class githubIssue extends Component {
       if (rawString1 === null) {
         this.setState({
           lastPage: 1,
-          searchRepoName: "",
-          searchUserName: ""
+          currentPage: 1,
         })
       }
       let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
@@ -83,8 +82,7 @@ class githubIssue extends Component {
       this.setState({
         issueList: jsonData.items,
         lastPage: parseInt(rawString4),
-        searchRepoName: "",
-        searchUserName: ""
+        currentPage: 1,
       });
     }
   };
@@ -101,8 +99,6 @@ class githubIssue extends Component {
     if (jsonData.message !== "Not Found") {
       this.setState({
         issueList: jsonData,
-        searchRepoName: "",
-        searchUserName: ""
       });
     }
 
@@ -113,8 +109,6 @@ class githubIssue extends Component {
       jsonData = await response.json();
       this.setState({
         issueList: jsonData.items,
-        searchRepoName: "",
-        searchUserName: ""
       });
     }
   }
