@@ -24,33 +24,49 @@ class IssueCard extends Component {
     });
   }
 
+
   renderCard() {
     return this.props.issue.map(
       ({ number, title, body, user, labels, state, created_at }) => {
         return (
           <Accordion>
-            <Card style={{ width: "100%" }}>
+            <Card>
               <Card.Body>
                 <div className="d-flex">
-                  <div className="mr-auto px-5 text-left">
+                  <div className="mr-auto text-left">
                     <Card.Title>
-                      <h4>
-                        #{number} {title}
+                      <h4 style={{ fontSize: 20 }}>
+                        #{number} {title} 
+                        &nbsp;
+                        <Badge
+                          pill
+                          style={{ 
+                            fontSize: 12,
+                          }}
+                          variant={
+                          (state === "open")
+                            ?
+                            "dark"
+                            :
+                            "secondary"
+                          }
+                        >
+                          {state}
+                        </Badge>
                       </h4>
+                      <p style={{ fontSize: 9, color: "gray" }}>
+                        Created {moment(created_at).fromNow()}
+                      </p>
                     </Card.Title>
                     <Card.Text>
-                      <br />
-                      Status: {state} // {moment(created_at).fromNow()} since it
-                      open!
-                    </Card.Text>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                      Read More!
+                      <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{ paddingLeft: 0 }}>
+                        Read More!
                     </Accordion.Toggle>
-                    <Accordion.Collapse eventKey="0">
-                      <div className="markdown">
+                      <Accordion.Collapse className="markdown" eventKey="0">
                         <MDReactComponent text={body} />
-                      </div>
-                    </Accordion.Collapse>
+                      </Accordion.Collapse>
+                    </Card.Text>
+
                   </div>
                   <div>
                     <div className="d-block">
@@ -66,7 +82,6 @@ class IssueCard extends Component {
                       </div>
                       <div
                         style={{
-                          clear: "both",
                           textAlign: "right"
                         }}
                       >
