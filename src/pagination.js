@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Pagination from 'react-paginating';
-
+import './pagination.css'
 
 class RenderPagination extends Component {
 
@@ -30,8 +30,9 @@ class RenderPagination extends Component {
                                     pageValue: 1,
                                     onPageChange: this.props.onPageChange
                                 })}
+                                className="btn-pagination-control"
                             >
-                                first
+                                First
                                     </button>
 
                             {hasPreviousPage && (
@@ -40,6 +41,7 @@ class RenderPagination extends Component {
                                         pageValue: previousPage,
                                         onPageChange: this.props.onPageChange
                                     })}
+                                    className="btn-pagination-control"
                                 >
                                     {'<'}
                                 </button>
@@ -58,6 +60,7 @@ class RenderPagination extends Component {
                                             style: activePage,
                                             onPageChange: this.props.onPageChange
                                         })}
+                                        className="btn-pagination"
                                     >
                                         {page}
                                     </button>
@@ -70,6 +73,7 @@ class RenderPagination extends Component {
                                         pageValue: nextPage,
                                         onPageChange: this.props.onPageChange
                                     })}
+                                    className="btn-pagination-control"
                                 >
                                     {'>'}
                                 </button>
@@ -80,8 +84,9 @@ class RenderPagination extends Component {
                                     pageValue: totalPages,
                                     onPageChange: this.props.onPageChange
                                 })}
+                                className="btn-pagination-control"
                             >
-                                last
+                                Last
               </button>
                         </div>
                     )}

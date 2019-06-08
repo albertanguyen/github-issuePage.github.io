@@ -5,6 +5,7 @@ import Search from "./search";
 import Createissue from "./createissue";
 import IssueCard from "./issuecard";
 import RenderNavbar from "./navbar";
+import RenderNavSearchResult from "./navsearchresult"
 import RenderFooter from "./footer";
 import "./App.css";
 
@@ -31,7 +32,7 @@ class githubIssue extends Component {
   };
 
   handleClick = async () => {
-    const { searchRepoName, searchUserName, currentPage, isSearch } = this.state;
+    const { searchRepoName, searchUserName, currentPage } = this.state;
 
     let rawString1;
     let rawString4;
@@ -130,41 +131,59 @@ class githubIssue extends Component {
   };
 
   render() {
-    return (
-      <div className="App">
-        <RenderNavbar />
-        <div className="App-header container">
-          <h1 className="text-uppercase">Github issue page</h1>
-          <Search
-            handleClick={this.handleClick}
-            searchRepoInput={e => this.searchRepoInput(e)}
-            searchUserNameInput={e => this.searchUserNameInput(e)}
-            searchUserName={this.state.searchUserName}
-            searchRepoName={this.state.searchRepoName}
-          />
-          <div className="row">
-            <div className="col-6">
-              <Createissue />
-            </div>
-            <div className="col-12">{/* {your search field here} */}</div>
+    if (!this.state.isSearch) {
+      return (
+        <div className="App">
+          <RenderNavbar />
+          <div className="App-header container">
+            <h1 className="text-uppercase">Github issue page</h1>
+            <Search
+              handleClick={this.handleClick}
+              searchRepoInput={e => this.searchRepoInput(e)}
+              searchUserNameInput={e => this.searchUserNameInput(e)}
+              searchUserName={this.state.searchUserName}
+              searchRepoName={this.state.searchRepoName}
+            />
+            <Createissue />
+          </div>
+          <div className="App-footer">
+            <RenderFooter />
           </div>
         </div>
-        <div className="App-body container">
-          <div className="row d-flex justify-content-center">
-            <IssueCard issue={this.state.issueList} />
-            <RenderPagination
-              currentPage={this.state.currentPage}
-              issue={this.props.issueList}
-              lastPage={this.state.lastPage}
-              onPageChange={(page) => this.handlePageChange(page)}
+      );
+    } else {
+      return (
+        <div className="App">
+          <div style={{ height: "4rem" }}>
+            <RenderNavSearchResult
+              handleClick={this.handleClick}
+              searchRepoInput={e => this.searchRepoInput(e)}
+              searchUserNameInput={e => this.searchUserNameInput(e)}
+              searchUserName={this.state.searchUserName}
+              searchRepoName={this.state.searchRepoName}
             />
           </div>
-        </div>
-        <div className="App-footer">
-          <RenderFooter />
-        </div>
-      </div>
-    );
+          <div className="App-body container">
+            <div className="row d-flex justify-content-center">
+              <div>
+                <IssueCard issue={this.state.issueList} />
+              </div>
+              <div style={{ margin: "2rem 0" }}>
+                <RenderPagination
+                  currentPage={this.state.currentPage}
+                  issue={this.props.issueList}
+                  lastPage={this.state.lastPage}
+                  onPageChange={(page) => this.handlePageChange(page)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="App-footer">
+            <RenderFooter />
+          </div>
+        </div >
+      )
+    }
   }
 }
 

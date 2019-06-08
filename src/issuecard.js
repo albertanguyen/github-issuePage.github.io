@@ -30,7 +30,7 @@ class IssueCard extends Component {
       ({ number, title, body, user, labels, state, created_at }) => {
         return (
           <Accordion>
-            <Card>
+            <Card class="issue-card">
               <Card.Body>
                 <div className="d-flex">
                   <div className="mr-auto text-left">
@@ -60,7 +60,7 @@ class IssueCard extends Component {
                     </Card.Title>
                     <Card.Text>
                       <Accordion.Toggle as={Button} variant="link" eventKey="0" style={{ paddingLeft: 0 }}>
-                        Read More!
+                        Show Body Text
                     </Accordion.Toggle>
                       <Accordion.Collapse className="markdown" eventKey="0">
                         <MDReactComponent text={body} />
