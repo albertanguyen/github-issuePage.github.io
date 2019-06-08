@@ -4,9 +4,11 @@ import RenderPagination from "./pagination";
 import Search from "./search";
 import Createissue from "./createissue";
 import IssueCard from "./issuecard";
+import { SweetAlert } from './react-bootstrap-sweetalert';
 import RenderNavbar from "./navbar";
 import RenderFooter from "./footer";
 import "./App.css";
+import Form from "react-bootstrap/FormGroup";
 
 class githubIssue extends Component {
   constructor(props) {
@@ -32,6 +34,11 @@ class githubIssue extends Component {
   handleClick = async () => {
     const { searchRepoName, searchUserName, currentPage } = this.state;
 
+    if (searchRepoName === '' && searchUserName === '' ) {
+      return (
+        <SweetAlert title="Here's a message!" onConfirm={this.hideAlert} />)
+    }
+    
     let rawString1;
 
     let response = await fetch(
