@@ -34,10 +34,10 @@ class githubIssue extends Component {
   handleClick = async () => {
     const { searchRepoName, searchUserName, currentPage } = this.state;
 
-    if (searchRepoName === '' && searchUserName === '' ) {
+    if (searchRepoName === '' && searchUserName === '') {
       return alert("Please input a correct repository")
     }
-    
+
     let rawString1;
 
     let response = await fetch(
@@ -130,6 +130,15 @@ class githubIssue extends Component {
     });
   };
 
+  henrycheck = obj => {
+    let abc = [];
+    abc.unshift(obj);
+    this.setState({
+      issueList: abc.concat(this.state.issueList),
+      isSearch: true,
+    });
+  };
+
   render() {
     if (!this.state.isSearch) {
       return (
@@ -144,7 +153,8 @@ class githubIssue extends Component {
               searchUserName={this.state.searchUserName}
               searchRepoName={this.state.searchRepoName}
             />
-            <Createissue />
+            <Createissue getObj={obj => this.henrycheck(obj)} />
+
           </div>
           <div className="App-footer">
             <RenderFooter />
@@ -162,13 +172,17 @@ class githubIssue extends Component {
               searchUserName={this.state.searchUserName}
               searchRepoName={this.state.searchRepoName}
             />
+
           </div>
           <div className="App-body container">
             <div className="row d-flex justify-content-center">
+              <div style={{ margin: "2rem 0"}}>
+                <Createissue getObj={obj => this.henrycheck(obj)} />
+              </div>
               <div>
                 <IssueCard issue={this.state.issueList} />
               </div>
-              <div style={{ margin: "2rem 0" }}>
+              <div>
                 <RenderPagination
                   currentPage={this.state.currentPage}
                   issue={this.props.issueList}
