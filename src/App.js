@@ -28,9 +28,18 @@ class githubIssue extends Component {
     this.setState({ searchUserName: e.target.value });
   };
 
-  handleClick = async () => {
+  letUserKnow = () => {
     const { searchRepoName, searchUserName } = this.state;
+    if (/^\s*$/.test(searchRepoName) && /^\s*$/.test(searchUserName)) {
+      alert("plz enter something");
+      return;
+    }
+    this.handleClick();
+  };
 
+  handleClick = async () => {
+    console.log("hello Ray");
+    const { searchRepoName, searchUserName } = this.state;
     let response = await fetch(
       `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues`
     );
@@ -58,6 +67,10 @@ class githubIssue extends Component {
     }
   };
 
+  check = () => {
+    console.log("hello world");
+  };
+
   render() {
     return (
       <div className="App">
@@ -65,7 +78,7 @@ class githubIssue extends Component {
         <div className="App-header container">
           <h1 className="text-uppercase">Github issue page</h1>
           <Search
-            handleClick={this.handleClick}
+            handleClick={this.letUserKnow}
             searchRepoInput={e => this.searchRepoInput(e)}
             searchUserNameInput={e => this.searchUserNameInput(e)}
             searchUserName={this.state.searchUserName}
