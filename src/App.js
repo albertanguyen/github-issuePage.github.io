@@ -18,6 +18,7 @@ class githubIssue extends Component {
       isloaded: false,
       currentPage: 1,
       lastPage: 1,
+      isSearch: false,
     };
   }
 
@@ -30,9 +31,10 @@ class githubIssue extends Component {
   };
 
   handleClick = async () => {
-    const { searchRepoName, searchUserName, currentPage } = this.state;
+    const { searchRepoName, searchUserName, currentPage, isSearch } = this.state;
 
     let rawString1;
+    let rawString4;
 
     let response = await fetch(
       `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues?page=${currentPage}`
@@ -48,17 +50,21 @@ class githubIssue extends Component {
         this.setState({
           lastPage: 1,
           currentPage: 1,
+          isSearch: true,
         })
-      }
-      let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
-      let rawString3 = rawString2.replace('>; rel="last"', "")
-      let rawString4 = rawString3.replace('page=', "")
+      } else {
+        let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
+        let rawString3 = rawString2.replace('>; rel="last"', "")
+        rawString4 = rawString3.replace('page=', "")
 
-      this.setState({
-        issueList: jsonData,
-        lastPage: parseInt(rawString4),
-        currentPage: 1,
-      });
+        this.setState({
+          issueList: jsonData,
+          lastPage: parseInt(rawString4),
+          currentPage: 1,
+          isSearch: true,
+        });
+      }
+
     }
 
     if (jsonData.message === "Not Found") {
@@ -73,17 +79,20 @@ class githubIssue extends Component {
         this.setState({
           lastPage: 1,
           currentPage: 1,
+          isSearch: true,
         })
-      }
-      let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
-      let rawString3 = rawString2.replace('>; rel="last"', "")
-      let rawString4 = rawString3.replace('page=', "")
+      } else {
+        let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
+        let rawString3 = rawString2.replace('>; rel="last"', "")
+        rawString4 = rawString3.replace('page=', "")
 
-      this.setState({
-        issueList: jsonData.items,
-        lastPage: parseInt(rawString4),
-        currentPage: 1,
-      });
+        this.setState({
+          issueList: jsonData.items,
+          lastPage: parseInt(rawString4),
+          currentPage: 1,
+          isSearch: true,
+        });
+      }
     }
   };
 
