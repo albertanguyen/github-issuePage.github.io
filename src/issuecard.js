@@ -11,7 +11,6 @@ class IssueCard extends Component {
       return (
         <>
           <Badge
-            pill
             style={{
               backgroundColor: "#" + color
             }}
@@ -24,7 +23,6 @@ class IssueCard extends Component {
     });
   }
 
-
   renderCard() {
     return this.props.issue.map(
       ({ number, title, body, user, labels, state, created_at }) => {
@@ -36,19 +34,18 @@ class IssueCard extends Component {
                   <div className="mr-auto text-left">
                     <Card.Title>
                       <h4 style={{ fontSize: 20 }}>
-                        #{number} {title} 
+                        #{number} {title}
                         &nbsp;
                         <Badge
-                          pill
-                          style={{ 
+                          style={{
                             fontSize: 12,
                           }}
                           variant={
-                          (state === "open")
-                            ?
-                            "dark"
-                            :
-                            "secondary"
+                            (state === "open")
+                              ?
+                              "dark"
+                              :
+                              "secondary"
                           }
                         >
                           {state}

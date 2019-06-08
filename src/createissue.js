@@ -18,7 +18,7 @@ class MyVerticallyCenteredModal extends React.Component {
             <Nav className="mr-auto" />
             <Form inline>
               <FormControl
-                onChange={this.props.checktitle}
+                onChange={this.props.checkTitle}
                 type="text"
                 placeholder="Issue subject"
                 className="mr-sm-2"
@@ -30,7 +30,7 @@ class MyVerticallyCenteredModal extends React.Component {
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>Describe your issue below</Form.Label>
             <Form.Control
-              onChange={this.props.checkboduy}
+              onChange={this.props.checkBody}
               as="textarea"
               rows="10"
             />
@@ -65,47 +65,53 @@ class Createissue extends Component {
 
   titleLocal(e) {
     this.setState({ title: e.target.value });
-    console.log("check");
   }
+
   bodyLocal(e) {
     this.setState({ body: e.target.value });
-    console.log("check");
   }
 
   render() {
     let modalClose = () => {
       const obj = {
-        number: 1,
+        number: parseInt(this.props.getIssue[0].number) + 1,
         title: this.state.title,
         body: this.state.body,
-        user: "localPostIssue",
-        labels: [],
+        user:
+        {
+          avatar_url: "https://www.pngfind.com/pngs/m/70-702149_ultron-marvel-ultron-logo-hd-png-download.png",
+          login: "teamultron",
+        },
+        labels: [
+          {
+            "name": "Pro",
+            "color": "fbca04",
+          }
+        ],
         state: "open",
         created_at: new Date()
       };
       this.setState({ modalShow: false });
       this.props.getObj(obj);
-      console.log("check", this.props.getObj);
-      console.log("check", obj);
     };
 
     return (
-      <Navbar expand="lg" variant="dark">
+      <Navbar variant="dark">
         <div className="d-flex">
           <Button
             className="issue-btn"
             variant="outline-info"
-            style={{ width: "150px", fontSize: "0.7em" }}
+            style={{ width: "150px", fontSize: "1.25em" }}
             onClick={() => this.setState({ modalShow: true })}
           >
-            Create issue
+            Create Issue
           </Button>
           <img className="App-logo" src={"img/logo.svg"} alt="logo" />
           <MyVerticallyCenteredModal
             show={this.state.modalShow}
             onHide={modalClose}
-            checktitle={e => this.titleLocal(e)}
-            checkboduy={e => this.bodyLocal(e)}
+            checkTitle={e => this.titleLocal(e)}
+            checkBody={e => this.bodyLocal(e)}
           />
         </div>
       </Navbar>
