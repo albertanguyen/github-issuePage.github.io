@@ -91,8 +91,15 @@ class Createissue extends Component {
         state: "open",
         created_at: new Date()
       };
-      this.setState({ modalShow: false });
-      this.props.getObj(obj);
+
+      if (obj.title === "") {
+        this.setState({ modalShow: false });
+        return alert("You need at least a title")
+
+      } else {
+        this.setState({ modalShow: false });
+        this.props.getObj(obj);
+      }
     };
 
     return (
