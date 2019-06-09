@@ -1,7 +1,7 @@
 # CoderSchool FTW - *Github Issue Page*
 
 Created with :blue_heart: by **6 Idiots**
-<a href="https://github.com/Nguyephi">Philip</a>, <a href="https://github.com/daivnguyen1991">Dai</a>, <a href="https://github.com/BoomBoomRay">Ray</a>, <a href="https://github.com/huynhtehoa">Hoa</a>, <a href="https://github.com/SteelHeart112">Harold</a>, <a href="https://github.com/albertanguyen">Anh</a>
+<a href="https://github.com/Nguyephi">Philip (Developer)</a>, <a href="https://github.com/daivnguyen1991">Dai (Developer)</a>, <a href="https://github.com/BoomBoomRay">Ray (Developer)</a>, <a href="https://github.com/huynhtehoa">Hoa (Developer)</a>, <a href="https://github.com/SteelHeart112">Harold (Developer)</a>, <a href="https://github.com/albertanguyen">Anh (Scrum Master)</a>
 
 ## Description
 
@@ -25,7 +25,7 @@ THE USER IS ABLE TO
 - [x] See multiple pages of results, by clicking a pagination control.
 - [x] See the body of the issue rendered in markdown.
 - [x] Create a new issue via a modal for the repository, by clicking on a "new issue" button. Clicking on this button will pop open a modal that asks for the requisite fields.
-- [x] Create the issue (for example, not supplying all required parameters) if there is an error , there should be a nice error message to.
+- [x] Create the issue (for example, not supplying all required parameters) if there is an error , there will be a nice error message to.
 
 ## Optional User Stories
 
@@ -43,7 +43,13 @@ THE USER CAN
 
 ## Time Spent and Lessons Learned
 
-Time spent: **xxx** hours spent in total.
+Time spent: We used extra time-dimension for this project.
+* Get last page from API request
+* Display image within markdown render properly
+* fetch API for differenct if-else statement along with updating the state of the parent component: App.js
+* Resolve empty array from the input which caused error message in map method and did not fire the second API request
+* Pass state from parent component to child components
+* Set up numbers of initial components/features and decided the initial state of the parent component
 
 [//]: # (Describe any challenges encountered while building the app.)
 
