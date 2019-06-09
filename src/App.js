@@ -37,8 +37,7 @@ class githubIssue extends Component {
     if (searchRepoName === '' && searchUserName === '') {
       return alert("Please input a correct repository")
     }
-
-    let rawString1;
+    let rawString1 = null;
 
     let response = await fetch(
       `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues?page=${currentPage}`
@@ -57,7 +56,7 @@ class githubIssue extends Component {
           isSearch: true
         })
       }
-      let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
+      let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.length)
       let rawString3 = rawString2.replace('>; rel="last"', "")
       let rawString4 = rawString3.replace('page=', "")
 
@@ -69,6 +68,8 @@ class githubIssue extends Component {
       });
     }
 
+    console.log('adwawq', jsonData)
+
     if (jsonData.message === "Not Found") {
       response = await fetch(
         `https://api.github.com/search/issues?q=${searchUserName}/${searchRepoName}?page=${currentPage}`
@@ -76,7 +77,7 @@ class githubIssue extends Component {
       jsonData = await response.json();
 
       rawString1 = response.headers.get("link")
-
+      
       if (rawString1 === null) {
         this.setState({
           lastPage: 1,
@@ -84,10 +85,15 @@ class githubIssue extends Component {
           isSearch: true
         })
       }
-      let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
-      let rawString3 = rawString2.replace('>; rel="last"', "")
-      let rawString4 = rawString3.replace('page=', "")
-
+      console.log('rawString1', jsonData)
+      let rawString2
+      let rawString3
+      let rawString4
+      if (rawString1 !== null ) {
+        rawString2 = rawString1.substr(rawString1.length - 20, rawString1.length)
+        rawString3 = rawString2.replace('>; rel="last"', "")
+        rawString4 = rawString3.replace('page=', "")
+      }
       this.setState({
         issueList: jsonData.items,
         lastPage: parseInt(rawString4),
@@ -133,13 +139,16 @@ class githubIssue extends Component {
   henrycheck = obj => {
     let abc = [];
     abc.unshift(obj);
+    console.log('sjsjsjs', abc.concat(this.state.issueList))
     this.setState({
       issueList: abc.concat(this.state.issueList),
       isSearch: true,
     });
+    console.log('RED 12')
   };
 
   render() {
+    console.log('ssss', this.state.issueList)
     if (!this.state.isSearch) {
       return (
         <div className="App">
@@ -153,7 +162,10 @@ class githubIssue extends Component {
               searchUserName={this.state.searchUserName}
               searchRepoName={this.state.searchRepoName}
             />
-            <Createissue getObj={obj => this.henrycheck(obj)} />
+            <Createissue 
+            getObj={obj => this.henrycheck(obj)} 
+            handleEnter={obj => this.henrycheck(obj)}
+            />
 
           </div>
           <div className="App-footer">
@@ -177,7 +189,11 @@ class githubIssue extends Component {
           <div className="App-body container">
             <div className="row d-flex justify-content-center">
               <div style={{ margin: "2rem 0"}}>
-                <Createissue getObj={obj => this.henrycheck(obj)} />
+                <Createissue 
+                getObj={obj => this.henrycheck(obj)} 
+                handleEnter={(obj) => this.henrycheck(obj)}
+
+                />
               </div>
               <div>
                 <IssueCard issue={this.state.issueList} />

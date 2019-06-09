@@ -31,6 +31,7 @@ class MyVerticallyCenteredModal extends React.Component {
             <Form.Label>Describe your issue below</Form.Label>
             <Form.Control
               onChange={this.props.checkboduy}
+              onSubmit={e=>console.log('Sumbit form')}
               as="textarea"
               rows="10"
             />
@@ -71,23 +72,35 @@ class Createissue extends Component {
     this.setState({ body: e.target.value });
     console.log("check");
   }
+  keyPressTwo = (e) => {
+    if(e.charCode === 13) {
+      e.preventDefault()
+      console.log('fire')
+      this.modalClose()
+      // this.props.handleEnter()
+    }
+  }
+
+  modalClose = () => {
+    console.log('shssi modalClose')
+    const obj = {
+      number: 1,
+      title: this.state.title,
+      body: this.state.body,
+      user: "localPostIssue",
+      labels: [],
+      state: "open",
+      created_at: new Date()
+    };
+    console.log("check", obj);
+    this.setState({ modalShow: false });
+    this.props.getObj(obj);
+    // console.log("check", this.props.getObj);
+   
+  };
+
 
   render() {
-    let modalClose = () => {
-      const obj = {
-        number: 1,
-        title: this.state.title,
-        body: this.state.body,
-        user: "localPostIssue",
-        labels: [],
-        state: "open",
-        created_at: new Date()
-      };
-      this.setState({ modalShow: false });
-      this.props.getObj(obj);
-      console.log("check", this.props.getObj);
-      console.log("check", obj);
-    };
 
     return (
       <Navbar expand="lg" variant="dark">
@@ -97,15 +110,16 @@ class Createissue extends Component {
             variant="outline-info"
             style={{ width: "150px", fontSize: "0.7em" }}
             onClick={() => this.setState({ modalShow: true })}
-          >
+>
             Create issue
           </Button>
           <img className="App-logo" src={"img/logo.svg"} alt="logo" />
           <MyVerticallyCenteredModal
             show={this.state.modalShow}
-            onHide={modalClose}
+            onHide={this.modalClose}
             checktitle={e => this.titleLocal(e)}
             checkboduy={e => this.bodyLocal(e)}
+            onKeyPress={this.keyPressTwo}
           />
         </div>
       </Navbar>
