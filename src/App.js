@@ -177,36 +177,36 @@ class githubIssue extends Component {
       return (
         <div className="App">
           <div style={{ height: "4rem" }}>
-            <RenderNavSearchResult
-              handleClick={this.handleClick}
-              searchRepoInput={e => this.searchRepoInput(e)}
-              searchUserNameInput={e => this.searchUserNameInput(e)}
-              searchUserName={this.state.searchUserName}
-              searchRepoName={this.state.searchRepoName}
-            />
+              <RenderNavSearchResult
+                handleClick={this.handleClick}
+                searchRepoInput={e => this.searchRepoInput(e)}
+                searchUserNameInput={e => this.searchUserNameInput(e)}
+                searchUserName={this.state.searchUserName}
+                searchRepoName={this.state.searchRepoName}
+              />
 
-          </div>
-          <div className="App-body container">
-            <div className="row d-flex justify-content-center">
-              <div style={{ margin: "2rem 0"}}>
-                <Createissue 
-                getObj={obj => this.henrycheck(obj)} 
-                handleEnter={(obj) => this.henrycheck(obj)}
-
-                />
-              </div>
-              <div>
-                <IssueCard issue={this.state.issueList} />
-              </div>
-              <div>
-                <RenderPagination
-                  currentPage={this.state.currentPage}
-                  issue={this.props.issueList}
-                  lastPage={this.state.lastPage}
-                  onPageChange={(page) => this.handlePageChange(page)}
-                />
-              </div>
             </div>
+            <div className="App-body container">
+              <div className="row d-flex justify-content-center">
+                <div style={{ margin: "2rem 0"}}>
+                  <Createissue 
+                  getObj={obj => this.henrycheck(obj)} 
+                  handleEnter={(obj) => this.henrycheck(obj)}
+
+                  />
+                </div>
+                <div>
+                  <IssueCard issue={this.state.issueList} />
+                </div>
+                <div>
+                  <RenderPagination
+                    currentPage={this.state.currentPage}
+                    issue={this.props.issueList}
+                    lastPage={this.state.lastPage}
+                    onPageChange={(page) => this.handlePageChange(page)}
+                  />
+                </div>
+              </div>
           </div>
           <div className="App-footer">
             <RenderFooter />
@@ -216,5 +216,4 @@ class githubIssue extends Component {
     }
   }
 }
-
 export default githubIssue;
