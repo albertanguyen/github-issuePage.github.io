@@ -3,7 +3,8 @@
   height: 100px !important;
 }
 
-div.markdown {
+div.markdown,
+div.markdown img {
   max-width: 90%;
   min-width: 90%;
   width: 90%
