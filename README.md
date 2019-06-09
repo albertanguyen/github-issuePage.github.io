@@ -5,8 +5,7 @@ Created with :blue_heart: by **6 Idiots**
 
 ## Description
 
-[//]: # "## Gif Walkthrough"
-[//]: # "Here's a walkthrough of implemented user stories."
+![Gif Walkthrough](github-issue-gif.gif)
 
 ## Required User Stories
 
@@ -14,7 +13,7 @@ THE USER IS ABLE TO
 
 - [x] Enter a repository in a search bar, click "search", and see the associated issues. The repository should be of the format owner/repo-name, e.g. facebook/react.
 - [x] See a proper error message if the repository does not exist.
-- [] See the following information for each issue:
+- [x] See the following information for each issue:
   - Issue Title
   - Number of the issue
   - Owner of the Issue
@@ -23,10 +22,10 @@ THE USER IS ABLE TO
   - Body of the Issue
   - Label - note the color as returned by the API.
   - State of Issue (Open/Closed).
-- [] See multiple pages of results, by clicking a pagination control.
-- [] See the body of the issue rendered in markdown.
-- [] Create a new issue via a modal for the repository, by clicking on a "new issue" button. Clicking on this button will pop open a modal that asks for the requisite fields.
-- [] Create the issue (for example, not supplying all required parameters) if there is an error , there should be a nice error message to.
+- [x] See multiple pages of results, by clicking a pagination control.
+- [x] See the body of the issue rendered in markdown.
+- [x] Create a new issue via a modal for the repository, by clicking on a "new issue" button. Clicking on this button will pop open a modal that asks for the requisite fields.
+- [x] Create the issue (for example, not supplying all required parameters) if there is an error , there should be a nice error message to.
 
 ## Optional User Stories
 
