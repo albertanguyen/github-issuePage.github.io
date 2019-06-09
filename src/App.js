@@ -49,11 +49,8 @@ class githubIssue extends Component {
     if (jsonData.message !== "Not Found") {
 
       rawString1 = response.headers.get("link")
-      console.log("0", response.headers.get("link"))
 
       if (rawString1 === null) {
-        console.log("1", rawString1)
-        console.log("1.1", jsonData)
         this.setState({
           issueList: jsonData,
           lastPage: 1,
@@ -61,8 +58,6 @@ class githubIssue extends Component {
         })
 
       } else if (rawString1 !== null) {
-        console.log("2", rawString1)
-
         let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
         let rawString3 = rawString2.replace('>; rel="last"', "")
         let rawString4 = rawString3.replace('page=', "")

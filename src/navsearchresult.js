@@ -1,13 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './navsearchresult.css'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Spinner } from 'react-bootstrap';
 
 class RenderNavSearchResult extends React.Component {
 
     keyPress = (e) => {
         if (e.charCode === 13) {
-            // console.log('fire')
             this.props.handleClick()
         }
     }

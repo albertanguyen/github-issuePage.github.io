@@ -6,7 +6,6 @@ import './pagination.css'
 class RenderPagination extends Component {
 
     render() {
-        console.log(this.props.issue)
         return (
             <Pagination
                 total={this.props.lastPage * 30}

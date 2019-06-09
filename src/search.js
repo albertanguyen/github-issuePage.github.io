@@ -6,13 +6,10 @@ Nav,
 FormControl,
 }
 from 'react-bootstrap';
-import './search.css';
-
 
 class Search extends Component {
     keyPress = (e) => {
         if(e.charCode === 13){
-            // console.log('fire')
         this.props.handleClick()
     }
     }
