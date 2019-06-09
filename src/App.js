@@ -48,6 +48,14 @@ class githubIssue extends Component {
 
     if (jsonData.message !== "Not Found") {
 
+      if (jsonData.length === 0) {
+        this.setState.state({
+          searchRepoName: "",
+          searchUserName: "",
+        })
+        return alert("This repository has no issues")
+      }
+
       rawString1 = response.headers.get("link")
 
       if (rawString1 === null) {
@@ -91,7 +99,7 @@ class githubIssue extends Component {
           searchRepoName: "",
           searchUserName: "",
         })
-        return alert("Please input a valid username or repository")
+        return alert("Please input a valid username and/or repository")
 
       } else {
         let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
