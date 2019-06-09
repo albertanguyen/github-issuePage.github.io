@@ -49,15 +49,20 @@ class githubIssue extends Component {
     if (jsonData.message !== "Not Found") {
 
       rawString1 = response.headers.get("link")
+      console.log("0", response.headers.get("link"))
 
       if (rawString1 === null) {
+        console.log("1", rawString1)
+        console.log("1.1", jsonData)
         this.setState({
           issueList: jsonData,
           lastPage: 1,
           isSearch: true,
         })
 
-      } else {
+      } else if (rawString1 !== null) {
+        console.log("2", rawString1)
+
         let rawString2 = rawString1.substr(rawString1.length - 20, rawString1.legnth)
         let rawString3 = rawString2.replace('>; rel="last"', "")
         let rawString4 = rawString3.replace('page=', "")
@@ -111,7 +116,6 @@ class githubIssue extends Component {
   handleClickForPagination = async () => {
     const { searchRepoName, searchUserName, currentPage } = this.state;
 
-
     let response = await fetch(
       `http://api.github.com/repos/${searchUserName}/${searchRepoName}/issues?page=${currentPage}`
     );
@@ -119,9 +123,9 @@ class githubIssue extends Component {
     let jsonData = await response.json();
 
     if (jsonData.message !== "Not Found") {
-        this.setState({
-          issueList: jsonData,
-        });
+      this.setState({
+        issueList: jsonData,
+      });
     }
 
     if (jsonData.message === "Not Found") {
@@ -130,11 +134,11 @@ class githubIssue extends Component {
       );
       jsonData = await response.json();
 
-        this.setState({
-          issueList: jsonData.items,
-        });
-      }
+      this.setState({
+        issueList: jsonData.items,
+      });
     }
+  }
 
   handlePageChange = (page, e) => {
     this.handleClickForPagination()
@@ -143,7 +147,7 @@ class githubIssue extends Component {
     });
   };
 
-  henryFunction = obj => {
+  henryFunctionToPushObjToArray = obj => {
     let tempArr = [];
     tempArr.unshift(obj);
     this.setState({
@@ -187,10 +191,10 @@ class githubIssue extends Component {
           </div>
           <div className="App-body container">
             <div className="row d-flex justify-content-center" style={{ margin: "2rem 0" }}>
-              <Createissue getObj={obj => this.henryFunction(obj)} getIssue={this.state.issueList} />
+              <Createissue getObj={obj => this.henryFunctionToPushObjToArray(obj)} getIssue={this.state.issueList} />
             </div>
             <div className="row d-flex justify-content-center">
-              <div>
+              <div style={{ width: "100%" }}>
                 <IssueCard issue={this.state.issueList} />
               </div>
             </div>
