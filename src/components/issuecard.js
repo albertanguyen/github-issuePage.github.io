@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Card, Badge, Accordion, Button } from "react-bootstrap";
 import moment from "moment";
 import ReactMarkdown from 'react-markdown';
-import "./issuecard.css";
+import "../css/issuecard.css";
 
 class IssueCard extends Component {
   renderbadges(labels) {
@@ -24,6 +24,7 @@ class IssueCard extends Component {
   }
 
   renderCard() {
+    console.log(this.props.issue)
     return this.props.issue.map(
       ({ number, title, body, user, labels, state, created_at }) => {
         return (

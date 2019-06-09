@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import RenderPagination from "./pagination";
-import Search from "./search";
-import Createissue from "./createissue";
-import IssueCard from "./issuecard";
-import RenderNavbar from "./navbar";
-import RenderNavSearchResult from "./navsearchresult"
-import RenderFooter from "./footer";
-import "./App.css";
-import Form from "react-bootstrap/FormGroup";
+import RenderPagination from "./components/pagination";
+import Search from "./components/search";
+import Createissue from "./components/createissue";
+import IssueCard from "./components/issuecard";
+import RenderNavbar from "./components/navbar";
+import RenderNavSearchResult from "./components/navsearchresult"
+import RenderFooter from "./components/footer";
+import "./css/App.css";
 
 class githubIssue extends Component {
   constructor(props) {

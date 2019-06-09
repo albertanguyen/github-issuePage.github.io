@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './footer.css'
+import '../css/footer.css'
 
 function RenderFooter() {
     return (
@@ -22,6 +22,7 @@ function RenderFooter() {
                             src="https://library.kissclipart.com/20181116/tq/kissclipart-github-octocat-clipart-github-inc-d75c5e491a5ca190.jpg"
                             width="35px"
                             height="35px"
+                            alt="githublogo"
                         />
                     </div>
                     <div className="col">

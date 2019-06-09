@@ -1,7 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './navbar.css'
 import { Navbar, Nav, NavDropdown, Spinner } from 'react-bootstrap';
+import '../css/navbar.css'
+
+
 
 function RenderNavbar() {
     return (
